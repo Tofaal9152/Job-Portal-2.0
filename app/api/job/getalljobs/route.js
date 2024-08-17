@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import database from '../../../../database/database';
 import { Job } from '../../../../models/jobModel';
-import { Company } from '../../../../models/companyModel';
 
 database();
 
 export async function GET(req) {
     try {
-        const { searchParams } = new URL(req.url);
-        const keyword = searchParams.get('keyword') || "";
+
+        const keyword = new URL(req.url).searchParams.get('keyword') || "";
 
         const query = {
             $or: [
@@ -16,10 +15,10 @@ export async function GET(req) {
                 { description: { $regex: keyword, $options: "i" } }
             ]
         };
-        
+
         const jobs = await Job.find(query).populate({
             path: "companyId"
-        }).sort({ createdAt: -1})
+        }).sort({ createdAt: -1 })
 
         if (jobs.length === 0) {
             return NextResponse.json({ success: false, message: "Jobs not found" }, { status: 400 });

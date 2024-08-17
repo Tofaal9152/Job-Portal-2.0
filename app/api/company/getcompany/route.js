@@ -6,7 +6,6 @@ database();
 export async function GET(req) {
     try {
         const userId = req.headers.get("xUserId")
-        console.log(userId);
         const companies = await Company.find({ userId })
 
         if (!companies) {

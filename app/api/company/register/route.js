@@ -12,7 +12,6 @@ export async function POST(req) {
 
         }
         let company = await Company.findOne({ name })
-        console.log(company);
 
         if (company) {
             return NextResponse.json({ success: false, message: "Company already exist" }, { status: 404 })

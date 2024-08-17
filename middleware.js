@@ -32,7 +32,9 @@ export const config = {
         '/api/job/getalljobs',
         '/api/job/usercreatedjob',
         '/api/job/getjobbyid/:id*',
-        '/api/application/applyjob',
+        '/api/application/applyjob/:id*',
+        '/api/application/getappliedjobs',
+        '/api/application/getapplicant/:id*',
+        '/api/application/updatestatus/:id*',
     ],
 };
-
