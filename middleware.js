@@ -3,6 +3,7 @@ import { jwtVerify } from 'jose';
 
 export async function middleware(req) {
     try {
+        // asdasd
         const token = req.cookies.get('token')?.value;
 
         if (!token) {
